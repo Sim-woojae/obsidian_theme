@@ -1,220 +1,162 @@
-/* PrismLauncherTheme.css
+/*wooJ Obsidian Theme */
+:root {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-hover: #f1f5f9;
 
-  Modern, glassy dark theme for Prism Launcher.
-  - Paste this CSS into Prism Launcher's custom theme file or theme editor.
-  - Edit :root variables below to change colors and feel.
+  --text-main: #0f172a;
+  --text-muted: #64748b;
 
-  Notes:
-  - This CSS is intentionally generic; if some Prism-specific class names differ, search for `.sidebar`,
-    `.header`, `.content` or inspect the launcher and substitute selectors accordingly.
-*/
+  --accent: #6366f1;
+  --accent-soft: rgba(99,102,241,.15);
 
-:root{
-  /* palette */
-  --bg-1: #0b0f14;         /* app background */
-  --bg-2: rgba(255,255,255,0.03); /* secondary panels */
-  --card: rgba(255,255,255,0.04);
-  --glass: rgba(255,255,255,0.02);
-  --accent: #7c5cff;       /* primary accent */
-  --accent-2: #00d4ff;     /* secondary accent */
-  --muted: #9aa6b2;        /* muted text */
-  --text: #e8eef6;         /* main text */
-  --success: #3ad29f;
-  --danger: #ff6b6b;
-  --glass-border: rgba(255,255,255,0.06);
-  --radius-lg: 14px;
-  --radius-md: 10px;
-  --radius-sm: 6px;
-  --shadow-1: 0 6px 18px rgba(2,6,23,0.6);
-  --shadow-2: 0 2px 8px rgba(2,6,23,0.5);
-  --glass-blur: 8px;
-  --transition-fast: 180ms cubic-bezier(.2,.9,.2,1);
+  --border: #e5e7eb;
+  --radius: 14px;
 }
 
-/* Global resets for launcher UI elements */
-html,body{
-  height:100%;
-  margin:0;
-  padding:0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(180deg,var(--bg-1), #071016 120%);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+
+.theme-dark {
+  --bg-main: #0f172a;
+  --bg-card: #111827;
+  --bg-hover: #1e293b;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --accent: #818cf8;
+  --accent-soft: rgba(129,140,248,.18);
+
+  --border: #1f2937;
 }
 
-/* Container panels */
-.app-root, .main-window, .launcher-root {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  min-height:100%;
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: "Inter", "Pretendard", system-ui, sans-serif;
 }
 
-.header, .topbar, header {
-  backdrop-filter: blur(var(--glass-blur));
-  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-bottom: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-2);
+.workspace-leaf-content,
+.markdown-preview-view,
+.markdown-source-view {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
 }
 
-.sidebar, .left-pane, .navigation {
-  width: 260px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));
-  border-right:1px solid rgba(255,255,255,0.03);
-  padding: 18px;
+.view-header {
+  border-bottom: 1px solid var(--border);
 }
 
-.sidebar .item, .nav-item, .menu-item {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:10px 12px;
-  border-radius:var(--radius-md);
-  margin-bottom:6px;
-  color:var(--muted);
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+.markdown-preview-view a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.markdown-preview-view a:hover {
+  text-decoration: underline;
 }
 
-.sidebar .item:hover, .nav-item:hover, .menu-item:hover{
-  background: linear-gradient(90deg, rgba(124,92,255,0.10), rgba(0,212,255,0.03));
-  color:var(--text);
+input[type="checkbox"] {
+  appearance: none;
+  width: 42px;
+  height: 24px;
+  background: var(--border);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: white;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+  transition: transform .25s ease;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--accent);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: translateX(18px);
+}
+
+.markdown-preview-view .task-list-item-checkbox {
+  transform: scale(1.1);
+  margin-right: 8px;
+}
+
+.workspace-ribbon,
+.workspace-tab-header {
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+}
+
+.nav-file-title::before {
+  content: "📄";
+  margin-right: 6px;
+  opacity: .7;
+}
+
+.nav-folder-title::before {
+  content: "📁";
+  margin-right: 6px;
+}
+
+.nav-file-title.is-active {
+  background: var(--accent-soft);
+  border-radius: 8px;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  padding: 6px 14px;
+  border: none;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+button:hover {
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
 }
 
-/* active item style */
-.sidebar .item.active, .nav-item.active {
-  background: linear-gradient(90deg, rgba(124,92,255,0.14), rgba(0,212,255,0.04));
-  color:var(--text);
-  box-shadow: 0 6px 18px rgba(124,92,255,0.06);
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* Content area */
-.content, .right-pane, .workspace {
-  padding: 22px;
+::-webkit-scrollbar-thumb {
+  background: var(--accent-soft);
+  border-radius: 999px;
 }
 
-/* Cards */
-.card, .instance-card, .modpack-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:var(--radius-lg);
-  border:1px solid rgba(255,255,255,0.03);
-  padding:14px;
-  box-shadow: var(--shadow-1);
-}
-
-.card .title, .instance-card .name {
-  font-weight:600;
-  color:var(--text);
-}
-.card .subtitle, .muted { color: var(--muted); font-size:0.92rem }
-
-/* Buttons */
-.button, button, .btn {
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 12px;
-  background: linear-gradient(180deg,var(--accent), color-mix(in srgb, var(--accent) 60%, black 10%));
-  color:white;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:600;
-  box-shadow: 0 6px 18px rgba(124,92,255,0.18);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
-}
-
-.button.secondary, .btn--ghost {
+::-webkit-scrollbar-track {
   background: transparent;
-  color:var(--text);
-  border:1px solid rgba(255,255,255,0.04);
-  box-shadow:none;
 }
 
-.button:active, .btn:active{ transform: translateY(1px); }
-.button:focus { outline: 2px solid rgba(124,92,255,0.14); outline-offset:2px }
-
-/* Input styles */
-input, textarea, select {
-  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-  border:1px solid rgba(255,255,255,0.04);
-  color:var(--text);
-  padding:10px 12px;
-  border-radius:var(--radius-sm);
-}
-input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.35) }
-
-/* List / Instance entries */
-.instance-list .instance {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px;
-  border-radius:10px;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-}
-.instance-list .instance:hover{ background: rgba(255,255,255,0.018); transform: translateY(-2px) }
-
-/* Progress bars */
-.progress, progress {
-  height:10px;
-  appearance:none;
-  background: rgba(255,255,255,0.03);
-  border-radius:999px;
-  overflow:hidden;
-}
-progress::-webkit-progress-bar{ background: rgba(255,255,255,0.03); }
-progress::-webkit-progress-value{ background: linear-gradient(90deg,var(--accent), var(--accent-2)); }
-
-/* Tooltips */
-.tooltip { background: rgba(3,8,14,0.8); color:var(--text); padding:6px 8px; border-radius:6px; font-size:0.85rem }
-
-/* Scrollbar */
-*::-webkit-scrollbar{ width:10px; height:10px }
-*::-webkit-scrollbar-track{ background: transparent }
-*::-webkit-scrollbar-thumb{ background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06)); border-radius:10px }
-
-/* Small utilities */
-.kv { font-size:0.85rem; color:var(--muted) }
-.row { display:flex; gap:12px; align-items:center }
-.center { display:flex; align-items:center; justify-content:center }
-
-/* Accent animated glow for important buttons */
-.glow-accent{
-  position:relative;
-}
-.glow-accent::after{
-  content:"";
-  position:absolute;
-  inset:-8px;
-  border-radius:inherit;
-  background: radial-gradient(60% 60% at 10% 20%, rgba(124,92,255,0.12), transparent 20%), radial-gradient(60% 60% at 90% 80%, rgba(0,212,255,0.07), transparent 20%);
-  filter: blur(10px);
-  z-index:-1;
-  opacity:0;
-  transition: opacity 280ms ease;
-}
-.glow-accent:hover::after{ opacity:1 }
-
-/* Tiny launch icon style */
-.launch-icon { width:36px; height:36px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:inline-grid; place-items:center }
-
-/* Responsive: collapse sidebar on narrow windows */
-@media (max-width:900px){
-  .sidebar, .left-pane { display:none }
-  .content { padding:12px }
+.markdown-preview-view pre {
+  background: #020617;
+  border-radius: 12px;
+  padding: 14px;
 }
 
-/* Theme tweaks for light variant (optional) */
-:root.light{
-  --bg-1: #f6f8fb;
-  --bg-2: rgba(2,8,23,0.03);
-  --card: #ffffff;
-  --glass: rgba(255,255,255,0.6);
-  --accent: #5b3bff;
-  --text: #0b1220;
-  --muted: #586476;
-  --glass-border: rgba(0,0,0,0.06);
-  --shadow-1: 0 6px 18px rgba(6,12,24,0.08);
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-hover);
+  border-radius: 8px;
+  padding: 10px 14px;
 }
 
-/* END OF THEME */
+.tag {
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.85em;
+}
